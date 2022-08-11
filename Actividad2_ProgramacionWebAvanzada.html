@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<canvas id="mycanvas" width="500" height="500">HOLA</canvas>
+	<script type="text/javascript">
+	var cv = document.getElementById('mycanvas');
+	var ctx= cv.getContext('2d');
+	//TRIANGULO
+	ctx.fillStyle="#FF0000";
+	ctx.moveTo (100,110);
+	ctx.lineTo(200,100);
+	ctx.lineTo(300,150);
+	ctx.fill();
+
+	//LINEA
+	ctx.moveTo(0,50);
+	ctx.lineTo(100,150);
+	ctx.stroke();
+	
+</script>
+</body>
+</html>
