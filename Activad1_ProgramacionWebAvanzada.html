@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<canvas id="mycanvas" width="500" height="500">HOLA</canvas>
+	<script type="text/javascript">
+	var cv = document.getElementById('mycanvas');
+	var ctx= cv.getContext('2d')
+	
+	ctx.fillStyle ="rgb(0,150,200)";
+	ctx.fillRect(50 ,50,150,150);
+	ctx.fillStyle ="rgb(255,51,51)";
+	ctx.fillRect(150 ,150,150,150);
+	ctx.fillStyle ="rgba(0,150,200,0.5)";
+	ctx.fillRect(250 ,250,150,150);
+</script>
+</body>
+</html>
