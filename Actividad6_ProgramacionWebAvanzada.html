@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<canvas id="mycanvas" width="500" height="500">HOLA</canvas>
+	<script type="text/javascript">
+
+	var cv = document.getElementById('mycanvas');
+	var ctx= cv.getContext('2d')
+
+const gradient = ctx.createRadialGradient(110,90,20, 100,100,140);
+
+gradient.addColorStop(0, 'pink');
+gradient.addColorStop(.9, 'white');
+
+ctx.fillStyle = gradient;
+ctx.fillRect(20, 20, 160, 160);
+
+</script>
+</body>
+</html>
