@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<canvas id="mycanvas" width="500" height="500">HOLA</canvas>
+	<img src="https://tse1.mm.bing.net/th?id=OIP.hXH3p_xileT3keyIEYj4CQHaHS&pid=Api&rs=1&c=1&qlt=95&w=121&h=119" height="100" width="100" id="img" >
+	<script type="text/javascript">
+	var cv = document.getElementById('mycanvas');
+	var ctx= cv.getContext('2d')
+	var img = new Image();
+
+img.onload = function(){
+  ctx.drawImage(img, 0, 0);
+}
+</script>
+</body>
+</html>
