@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<canvas id="mycanvas" width="500" height="500">HOLA</canvas>
+	<img src="img/image.png" height="50" width="50" id="img"  style="display:none;">
+	<script type="text/javascript">
+	var cv = document.getElementById('mycanvas');
+	var ctx= cv.getContext('2d')
+
+//caparazon
+	ctx.fillStyle = 'rgb(121,61,60)'
+	ctx.fillRect(80 ,50,90,90);
+//CABESA
+	// Círculo externo
+    ctx.arc(125,40,20,20,0,2*Math.PI);
+     ctx.fillStyle = 'rgb(255,45,45)'
+  ctx.fill();
+  // Boca
+    ctx.moveTo(120, 50);
+    ctx.arc(125, 50, 5, 0, Math.PI, false); 
+ 	// Ojo izquierdo
+    ctx.moveTo(115, 45);
+    ctx.arc(115,40,5,20,10,2*Math.PI, true); 
+ 	// Ojo derecho 
+    ctx.moveTo(130, 45);
+    ctx.arc(130,40,5,20,10,2*Math.PI, false); 
+	  ctx.fill();
+
+	//Antifaz
+  ctx.moveTo(105, 30);
+  ctx.arc(125, 30, 20, 0, Math.PI, false); 
+ 	ctx.fillStyle = 'rgb(0,128,0)'
+  ctx.fill();
+  ctx.stroke();
+//Camisa
+var grd = ctx.createLinearGradient(200, 100, 60, 0);
+ctx.fillStyle = grd;
+grd.addColorStop(0, "green");
+grd.addColorStop(1, "yellow");
+//Cuerpo y brazos
+ctx.fillRect(100 ,60,50,80);
+ctx.fillRect(70 ,60,30,60);
+ctx.fillRect(150 ,60,30,60);
+ctx.fillStyle = 'rgb(0,128,0)'
+ctx.fillStyle = 'rgb(255,45,45)'
+ctx.fillRect(70 ,80,30,10);
+ctx.fillRect(150 ,80,30,10);
+//Manos
+ctx.fillStyle = 'rgb(0,128,0)'
+ctx.fillRect(70 ,110,30,20);
+ctx.fillRect(150 ,110,30,20);
+//Piernas
+ctx.fillStyle = 'rgb(0,128,0)'
+ctx.fillRect(120 ,130,30,60);
+ctx.fillRect(100 ,130,30,60);
+ctx.fillStyle = 'rgb(255,45,45)'
+ctx.fillRect(120 ,150,30,10);
+ctx.fillRect(100 ,150,30,10);
+//Pies y vendas
+ctx.fillStyle = 'rgb(0,128,0)'
+ctx.fillRect(100 ,180,30,15);
+ctx.fillRect(100 ,180,30,15);
+ctx.fillRect(90 ,180,30,15);
+ctx.fillRect(130 ,180,30,15);
+ctx.fillStyle = 'rgb(127,127,127)'
+ctx.fillRect(90 ,180,30,10);
+ctx.fillRect(130 ,180,30,10);
+ //NOMBRE
+ ctx.fillStyle = 'rgb(255,255,88)'
+ ctx.font = "bold 15px sans-serif";
+  ctx.fillText("Rafael",100,90);
+	img.onload = function(){
+  ctx.drawImage(img, 90,70,70 ,30);
+}
+</script>
+	</body>
+		</html>
