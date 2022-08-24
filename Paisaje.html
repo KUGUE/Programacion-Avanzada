@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<canvas id="mycanvas" width="500" height="500" background="blue" >HOLA</canvas>
+	<script type="text/javascript">
+	var cv = document.getElementById('mycanvas');
+	var ctx= cv.getContext('2d')
+
+	//cielo
+	ctx.beginPath();
+	var grd = ctx.createLinearGradient(20, 500, 60, 0);
+	ctx.fillStyle = grd;
+	grd.addColorStop(1, "blue");
+	grd.addColorStop(0, "yellow");
+	ctx.fillRect(0 ,0,500,500);
+	//Estrellas
+	ctx.fillStyle = 'rgb(175,243,230)'
+	ctx.fillRect(10 ,20,10,10);
+	ctx.fillRect(200 ,20,10,10);
+	ctx.fillRect(60 ,50,10,10);
+	ctx.fillRect(140 ,40,10,10);
+	ctx.fillRect(300 ,110,10,10);
+	ctx.fillRect(30 ,120,10,10);
+	ctx.fillRect(450 ,40,10,10);
+	ctx.fillRect(440 ,20,10,10);
+	ctx.fillRect(370 ,20,10,10);
+	ctx.fillRect(200 ,20,10,10);
+	ctx.fillRect(20 ,50,10,10);
+	ctx.fillRect(140 ,40,10,10);
+		ctx.fillRect(460 ,100,10,10);
+	ctx.fillRect(420 ,100,10,10);
+	ctx.fillRect(380 ,120,10,10);
+	ctx.fillRect(240 ,130,10,10);
+	ctx.fillRect(10 ,20,10,10);
+	//robles
+	ctx.beginPath();
+	ctx.fillStyle = 'rgb(79,39,0)'
+	ctx.fillRect(50 ,200,50,200);
+	ctx.fillRect(250 ,250,50,200);
+	ctx.fillRect(150 ,300,50,200);
+	ctx.fillRect(425 ,200,50,200);
+ ctx.fillStyle = 'rgb(255,0,0)'
+
+//hojas y cesped
+   ctx.beginPath();
+	  ctx.arc(75,200,60,20,0,2*Math.PI);
+    ctx.moveTo(50, 200);
+    ctx.arc(275,250,60,20,0,2*Math.PI);
+    ctx.moveTo(250, 250);
+    ctx.arc(175,300,60,20,0,2*Math.PI);
+    ctx.moveTo(159, 300);
+    ctx.arc(455,200,60,20,0,2*Math.PI);
+    ctx.moveTo(30, 200);
+    ctx.arc(110,500,120,20,0,2*Math.PI);
+    ctx.moveTo(220, 50);
+    ctx.arc(210,500,120,20,0,2*Math.PI);
+    ctx.moveTo(220, 50);
+  	ctx.arc(310,500,120,20,0,2*Math.PI);
+    ctx.moveTo(320, 50);
+    ctx.arc(410,500,120,20,0,2*Math.PI);
+    ctx.moveTo(420, 50);
+    ctx.fillStyle = 'rgb(23,158,128)'
+    ctx.fill(); 
+</script>
+</body>
+</html>
