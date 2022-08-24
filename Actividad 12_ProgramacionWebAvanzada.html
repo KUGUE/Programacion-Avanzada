@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Actividad cuadrado</title> 
+</head>
+
+<body>
+    <canvas id="canvas" width="500" height="500"></canvas>
+
+    <script type="text/javascript">
+
+
+
+        var maxX = 250, maxY = 250;
+        function start() {
+             cv = document.getElementById("canvas");
+             ctx = cv.getContext("2d");
+            paint();
+        }
+
+        function paint() {
+            window.requestAnimationFrame(paint);
+      
+            ctx.fillRect(0, 0, 400, 400);
+            ctx.fillStyle = random_rgba();
+       
+            // ctx.StrokeRect(maxX, maxY, 40, 40);
+            update();
+        }
+
+        window.addEventListener('load', start)
+
+        window.requestAnimationFrame = (function () {
+            return window.requestAnimationFrame ||
+                window.webkitRequestAnimationFrame ||
+                window.mozRequestAnimationFrame ||
+                function (callback) {
+                    window.setTimeout(callback, 17);
+                };
+        }());
+
+        function update() {
+            maxX+=10;
+            if(maxX>500){
+                maxX=0;
+            }
+        }
+
+        document.addEventListener("keydown", function (e) {
+            console.log(e);
+            //ARRIBA
+            if (e.which == 87) {
+                maxY -= 10;
+            }
+            //ABAJO
+            if (e.which == 83) {
+                maxY += 10;
+            }
+            //IZQUIERDA
+            if (e.which == 65) {
+                maxX -= 10;
+            }
+            //DERECHA
+            if (e.which == 68) {
+                maxX += 10;
+            }
+            paint();
+        });
+
+        function random_rgba() {
+            var o = Math.round, r = Math.random, s = 255;
+            return 'rgba(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ',' + r().toFixed(1) + ')';
+        }
+
+</script>
+</body>
+</html>
