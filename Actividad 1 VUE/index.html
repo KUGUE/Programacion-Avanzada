@@ -1,0 +1,83 @@
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="contenedor">
+        <h2> TOP</h2>
+        <ol>
+            <li v-for=" alumno in palomilla">
+                {{alumno.name}} :
+                {{alumno.role}}:
+            </li>
+        </ol>
+        <input type="text" v-model="a_name">
+        <input type="text" v-model="role">
+        <button  @click="addPalomilla">Agregar</button>
+        <h1> {{ name }} </h1>
+        <p>  {{ lastname }} </p>
+  
+   
+        <form action="">
+            <fieldset>
+                <legend>Datos personales</legend>
+                <input type="text" v-model="name">
+                <input type="text" v-model="lastname">
+                <button  @click="saludar">Saludar</button>
+            </fieldset>
+            
+        </form>
+        <form action="">
+            <fieldset>
+                <legend>Calculadora</legend>
+                <input type="text" placeholder="Ingrese un numero">
+                <input type="text" placeholder="Ingrese un numero">
+                <button  @click="calculadora">Suma</button>
+
+                <p> {{resultado}} </p>
+            </fieldset>
+            
+        </form>
+    </div>
+
+    <script src="https://unpkg.com/vue@3"></script>
+    <script type="text/javascript">
+
+        const {createApp} =Vue
+        const app = createApp({
+            data() {
+                return {
+                    name:'Emmanuel',
+                    lastname:'Kugue',
+                    resultado:0,
+                    numero1:0,
+                    numero2:0,
+                    age:0,
+                    palomilla : [{name:'Juan',role:'backend'},{name:'Dani',role:'frontend'}],
+                    a_name:"",
+                    a_role:""
+                }
+            },
+            methods: {
+                saludar(){
+                    alert("hola" + this.name + this.lastname)
+                },
+                calculadora(){
+                    this.resultado=this.numero1.parcerInt() + this.numero2.parcerInt()
+                },
+                addPalomilla(){
+                    this.palomilla.push({
+                        name:this.a_name,
+                        role:this.a_role,
+                    })
+                }
+            }
+        }).mount('#contenedor')
+    </script>
+</body>
+</html>
