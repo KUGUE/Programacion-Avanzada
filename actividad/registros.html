@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ocultar y añadir nuevo usuario</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <link rel="stylesheet" href="css/diseño.css">
+</head>
+<body>
+    <div id="contenedor">
+        <div v-if="tableview">
+            <br/>
+            <button @click="add">Añadir nuevo usuario</button>
+            <br/><br/>
+            <table class="tabla-registros">
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                </tr>
+                <tr v-for="(user, id) in users" :key="user.id">
+                    <td scope="row">{{ user.id }}</td>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+                    </td>
+                </tr>
+            </tr>
+            </table>
+        </div>
+        <div v-if="tableview == false">
+            <div  class="formulario-editar">
+                <h2 v-if="action">Añadir usuario</h2>
+                <form>
+                    <div>
+                        <div>
+                            <label>Nombre</label>
+                            <br>
+                            <input type="text" v-model="userData.name" />
+                        </div>
+                        <div>
+                            <label>Nombre de usuario</label>
+                            <br>
+                            <input type="text" v-model="userData.username" />
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <label>Correo Electronico</label>
+                            <br>
+                            <input type="text" v-model="userData.email" />
+                        </div>
+                    </div>
+                    <br>
+                    <button @click="guardar" v-if="action">Añadir</button>
+                    <button @click="cancelar">Cancelar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        if (window.sessionStorage) 
+        {
+            var nombre = sessionStorage.getItem("username");
+            console.log(nombre);
+        }
+        const { createApp } = Vue;
+        const app = createApp(
+        {
+            data() 
+            {
+                return {
+                    users: null,
+                    tableview: true,
+                    lastId: 10,
+                    action: true,
+                    idUser: null,
+                    userData: {
+                        id: null,
+                        name: '',
+                        username: '',
+                        email: '',
+                        address: {
+                            city: ''
+                        },
+                    },
+                };
+            },
+            methods: 
+            {
+                guardar() 
+                {
+                    this.users.push(this.userData),
+                    this.mostrarTabla();
+                },
+                cancelar() 
+                {
+                    this.mostrarTabla();
+                },
+                mostrarTabla() 
+                {
+                    this.tableview = true;
+                    this.userData =
+                    {
+                        id: null,
+                        name: '',
+                        username: '',
+                        email: '',
+                    };
+                },
+                add() 
+                {
+                    this.tableview = false;
+                    this.action = true;
+                    this.userData.id = this.lastId + 1;
+                },
+            },
+            mounted() 
+            {
+                fetch("users.json")
+                    .then((res) => res.json())
+                    .then((json) => (this.users = json))
+                    .catch((error) => console.log(error));
+            },
+        }).mount("#contenedor");
+    </script>
+</body>
+</html>
