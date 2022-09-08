@@ -20,12 +20,16 @@
                     <th>Name</th>
                     <th>Username</th>
                     <th>Email</th>
+                    <th>Phone</th>
+                    <th>Website</th>
                 </tr>
                 <tr v-for="(user, id) in users" :key="user.id">
                     <td scope="row">{{ user.id }}</td>
                     <td>{{ user.name }}</td>
                     <td>{{ user.username }}</td>
                     <td>{{ user.email }}</td>
+                    <td>{{ user.phone}}</td>
+                    <td>{{ user.website}}</td>
                     </td>
                 </tr>
             </tr>
@@ -52,6 +56,20 @@
                             <label>Correo Electronico</label>
                             <br>
                             <input type="text" v-model="userData.email" />
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <label>Telefono</label>
+                            <br>
+                            <input type="text" v-model="userData.phone" />
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <label>Sitio web</label>
+                            <br>
+                            <input type="text" v-model="userData.website" />
                         </div>
                     </div>
                     <br>
@@ -83,9 +101,8 @@
                         name: '',
                         username: '',
                         email: '',
-                        address: {
-                            city: ''
-                        },
+                        phone: '',
+                        website: ''
                     },
                 };
             },
