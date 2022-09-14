@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Peliculas Kugue</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+    <div id="contenedor">
+     <!--Mostrar detalle de peliculas-->
+        <div  v-if = "mostrardetallespeli" class="lista-pelicula">
+            <button @click="cerrarDetalles">Regresar</button>
+            <br><br>
+                  <img :src="'https://image.tmdb.org/t/p/w200'+pelicula.poster_path" class="posterview">
+                    <img :src="'https://image.tmdb.org/t/p/w500'+pelicula.poster_path" class="back">
+            <br>
+            <h1 class="titulo">Titulo</h1>
+            <label class="sub">{{pelicula.title}}</label>
+            <h1 class="titulo">Idioma Original</h1>
+            <label class="sub">{{pelicula.original_language}}</label>
+            <h1 class="titulo">Vista General </h1>
+            <label class="sub">{{pelicula.overview}}</label>
+            <h1 class="titulo">Fecha de Publicacion: </h1>
+            <label class="sub">{{pelicula.release_date}}</label>
+            <br>
+            <br>
+            <button class="evaluaciontam" @click="decrementarvalor">-</button>
+            <label class="valor">{{valor}}</label>
+            <button class="evaluaciontam" @click="incrementarvalor">+</button>
+            <br>
+            <br>
+            <button @click="evaluar">Evaluar</button>
+            <button @click="borrarevaluar">Borrar Valoracion</button>
+        </div>
+   <!--      CONTENEDOR DE PELICULAS -->
+        <div v-else> 
+            <div v-for = "peli in peliculas" class="lista-peliculas">
+                <img :src="'https://image.tmdb.org/t/p/w200'+peli.poster_path" class="poster">
+                <label class="titulopelicula">{{peli.title}}</label>
+                <br>
+                <button @click="details(peli)">Ver mas</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+        const { createApp } = Vue;
+    const app = createApp(
+    {
+        data()
+        {
+            return{
+                id: 0,
+                user:localStorage.getItem("nombre"),
+                peliculas:[],
+                mostrardetallespeli: false,
+                pelicula:[{id:"",
+                title:"",
+                original_language:"",
+                overview:"",
+                relase_date:"",
+                poster_path:""}],
+                valor: 5
+            }
+        },
+        methods:
+        {
+            details(id)
+            {
+                this.id = id.id;
+                this.pelicula.id = id.id;
+                this.pelicula.title = id.title;
+                this.pelicula.original_language = id.original_language;
+                this.pelicula.overview = id.overview;
+                this.pelicula.release_date = id.release_date;
+                this.pelicula.poster_path = id.poster_path;
+                this.mostrardetallespeli =  true;
+            },
+            cerrarDetalles()
+            {
+                this.mostrardetallespeli =  false;
+            },
+        
+        decrementarvalor()
+        {
+            this.valor--;
+            if(this.valor <= 0)
+            {
+                this.valor = 0;
+            }
+        },
+        incrementarvalor()
+        {
+            this.valor++;
+            if(this.valor >= 10)
+            {
+                this.valor = 10;
+            }
+            
+        },
+        evaluar()
+        {
+            var data = new FormData();
+            data.append('value', this.valor);
+
+            var config = 
+            {
+                method: 'post',
+                url: 'https://api.themoviedb.org/3/movie/'+this.id+'/rating?api_key=29a1e9db0f4108cc36601e9d77a74c71',
+                headers: 
+                { 
+                    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyOWExZTlkYjBmNDEwOGNjMzY2MDFlOWQ3N2E3NGM3MSIsInN1YiI6IjYzMWVkMDY4Yjg3YWVjMDA4MjgzYjBhMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ._Wbko4vkQok4C5H6aAKt77AiGLspCfHnMUV18a3it98',     
+                },
+                data : data
+            };
+            axios(config)
+            .then(function (response) 
+            {
+                alert("A sido evaluado exitosamente");
+                console.log(JSON.stringify(response.data));
+            })
+            .catch(function (error) 
+            {
+                console.log(error);
+            });
+        },
+        borrarevaluar()
+        {
+            var config = {
+            method: 'delete',
+            url: 'https://api.themoviedb.org/3/movie/'+this.id+'/rating?api_key=29a1e9db0f4108cc36601e9d77a74c71',
+            headers: 
+            { 
+                'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyOWExZTlkYjBmNDEwOGNjMzY2MDFlOWQ3N2E3NGM3MSIsInN1YiI6IjYzMWVkMDY4Yjg3YWVjMDA4MjgzYjBhMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ._Wbko4vkQok4C5H6aAKt77AiGLspCfHnMUV18a3it98'
+            }
+            };
+
+            axios(config)
+            .then(function (response) 
+            {
+                console.log(JSON.stringify(response.data));
+            })
+            .catch(function (error) 
+            {
+                console.log(error);
+            });
+
+        }
+    },
+        mounted()
+        {
+            var self = this;
+            var config = 
+            {
+            method: 'get',
+            url: 'https://api.themoviedb.org/3/movie/popular?api_key=29a1e9db0f4108cc36601e9d77a74c71&language=es-ES',
+                headers: 
+                { 
+                    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyOWExZTlkYjBmNDEwOGNjMzY2MDFlOWQ3N2E3NGM3MSIsInN1YiI6IjYzMWVkMDY4Yjg3YWVjMDA4MjgzYjBhMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ._Wbko4vkQok4C5H6aAKt77AiGLspCfHnMUV18a3it98'
+                }
+            };
+            axios(config)
+            .then(function (response) 
+            {
+                self.peliculas = response.data.results;
+                console.log(JSON.stringify(response.data.results));
+            })
+            .catch(function (error) 
+            {
+                console.log(error);
+            });
+            console.log(self.peliculas);
+        }
+        }).mount("#contenedor")
+        </script>
+    </body>
+</html>

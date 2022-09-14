@@ -1,0 +1,79 @@
+
+
+
+body{
+    background-color: #262626;
+}
+.lista-peliculas
+{
+ display:inline-block;
+ width: 230px;
+ height: 400px;
+}
+.back{
+  width: 500px;
+  height: 500px;
+   filter: blur(100px);
+    z-index: 1;
+}
+.posterview{
+  padding-top: 100px;
+  padding-left: 120px;
+  z-index: 3;
+  position: absolute;
+
+}
+.poster{
+   border-radius: 8px 8px 0px 0px;
+}
+.titulopelicula{
+  margin-bottom: 0px;
+    display: block;
+    width: 200px;
+   border-radius: 0px 0px 8px 8px;
+    background-color:#708090;
+  font-size: 15px;
+}
+.titulo{
+  margin-bottom: 0px;
+    display: block;
+   border-radius: 8px 8px 0px 0px;
+    background-color:#708090;
+  font-size: 15px;
+}
+.valor{
+  margin-left: 20px;
+  margin-right: 20px;
+  font-size: 50 px;
+    color: white;
+}
+
+.sub{
+  display: block;
+  background-color: #696969;
+  color: white;
+}
+
+.evaluaciontam{
+  background-color: white;
+  color: black;
+  border: 2px solid #4CAF50;
+  font-size: 28px;
+  width: 30px;
+  text-align: center;
+  transition-duration: 0.4s;
+}
+
+button {
+  position: relative;
+  background-color: white;
+  color: black;
+  border: 2px solid #4CAF50;
+  font-size: 28px;
+  width: 200px;
+  text-align: center;
+  transition-duration: 0.4s;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+}

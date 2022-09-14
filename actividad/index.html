@@ -4,69 +4,84 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>9-Añadir Boton de ocultar</title>
+    <title>Login</title>
     <script src="https://unpkg.com/vue@3"></script>
-    <link rel="stylesheet" href="css/diseño.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="css/login.css">
 </head>
-<body>
+<body >
     <div id="contenedor" class="formulario">
+          <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
         <form>
             <legend>Login</legend>
             <br>
             <label for="">Correo electronico</label>
             <br><br>
-            <input type="email" v-model="email" name="" placeholder="Correo Electronico">
+            <input  v-model="email "name="email" placeholder="email">
             <br><br>
             <label for="">Password</label>
             <br><br>
-            <input type="password" v-model="password" name="" placeholder="Password">
+            <input  v-model="password" name="password" placeholder="password">
             <br><br>
-            <button @click="login">Ingresar</button>    
+            <button class="button" @click="login">Ingresar</button>    
         </form>
     </div>
+
     <script type="text/javascript">
-        const { createApp } = Vue;
+        const { createApp } = Vue
         const app = createApp({
             data() {
                 return {
                     users: null,
                     email: '',
                     password: ''
+
                 }
             },
-            methods: 
-            {
-                login(e)
-                {
-                    e.preventDefault();
-                    var username;
-                    var email_user = this.email;
-                    var password_user = this.password;
-                    var access = this.users.map(function(u)
-                    {
-                        if (email_user.toLowerCase() == u.email.toLowerCase()) 
-                        {
-                            if(password_user === u.password) 
-                            {
-                                username = u.username;
-                                //swal("Bienvenido "+username);
-                                alert("Bienvenido "+username);
-                                sessionStorage.setItem("username", username);
-                                location.href = 'registros.html';
-                            }
-                        }
-                    })
-                    console.log(access);
+            methods:{
+                login(e){
+               //var axios = require('axios');
+              // var FormData = require('form-data');
+
+               var data = new FormData();
+               data.append('username', this.email);
+               data.append('password', this.password);
+               data.append('request_token', '');
+
+               var config = {
+                  method: 'post',
+                  url: 'https://api.themoviedb.org/3/authentication/token/validate_with_login?api_key=29a1e9db0f4108cc36601e9d77a74c71',
+                  headers: { 
+                    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyOWExZTlkYjBmNDEwOGNjMzY2MDFlOWQ3N2E3NGM3MSIsInN1YiI6IjYzMWVkMDY4Yjg3YWVjMDA4MjgzYjBhMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ._Wbko4vkQok4C5H6aAKt77AiGLspCfHnMUV18a3it98', 
+                    //...data.getHeaders()
+                },
+                data : data
+            };
+
+            axios(config)
+            .then(function (response) {
+                window.location.href='peliculas.html';
+              console.log(JSON.stringify(response.data));
+          })
+            .catch(function (error) {
+                alert("DATOS ERRONEOS")
+
+              console.log(error);
+          });
+            e.preventDefault()
                 }
             },
             mounted()
             {
-                fetch('users.json')
-                    .then((res) => res.json())
-                    .then((json) => (this.users = json ))
-                    .catch((err) => (console.log(err) ))
+                // fetch('users.json')
+                //     .then((res) => res.json())
+                //     .then((json) => (this.users = json ))
+                //     .catch((err) => (console.log(err) ))
             }
-     }).mount('#contenedor');
-</script>
+        }).mount('#contenedor');
+    </script>
 </body>
 </html>
