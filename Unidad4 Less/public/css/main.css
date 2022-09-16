@@ -1,0 +1,12 @@
+.container {
+  background-color: red;
+}
+.container fieldset form {
+  background-color: #2E534D;
+}
+.container fieldset form button {
+  width: 150px;
+  min-height: 30px;
+  background-color: #525252;
+  color: white;
+}

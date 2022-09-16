@@ -1,0 +1,23 @@
+@bgcolor: #2E534D;
+
+.setBackgroundGeneral() {
+    background-color: red;
+}
+
+.container {
+    .setBackgroundGeneral;
+
+    fieldset {
+        form {
+
+            background-color: @bgcolor;
+
+            button {
+                width: 150px;
+                min-height: 30px;
+                background-color: #525252;
+                color: white;
+            }
+        }
+    }
+}
