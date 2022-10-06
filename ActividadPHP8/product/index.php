@@ -119,7 +119,7 @@ $brands = $brands->getBrands();
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <input type="hidden" name="action" value="update">
+                    <input type="hidden" name="action" value="upload">
                     <input type="text" name="id" id="id" value="0">
                     <button type="submit" class="btn btn-primary">Editar</button>
                 </div>
